@@ -19,9 +19,9 @@ for artist in soup.find_all('a', class_='sda link-type_1'):
 for step in track(range(len(artisty))):
     data = get(artisty[step], headers=headers).content.decode('utf-8')
     soup = BS(data, 'lxml')
-    for link in soup.find_all(class_='download-svg'):
-        print('Found: https://babysongs.ru' + link.get('href'))
-        links.append('https://babysongs.ru' + link.get('href'))
+    for link in soup.find_all(class_='source'):
+        print('Found: https://babysongs.ru' + link.get('data-audio'))
+        links.append('https://babysongs.ru' + link.get('data-audio'))
 for step in track(range(len(links))):
     let = links[step].split("/")
     filename = let[-1]
